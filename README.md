@@ -1,3 +1,8 @@
+
+gabriel albano de souza 
+rm:563035
+
+
 🎯 Descrição
 Este é um projeto acadêmico que simula uma batalha entre um gorila e 100 humanos. O gorila pode atacar, se defender e se curar, enquanto os humanos reagem automaticamente, atacando o gorila em intervalos de tempo.
 
