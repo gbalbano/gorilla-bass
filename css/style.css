@@ -1,0 +1,62 @@
+body {
+  font-family: sans-serif;
+  background-color: #eef5db;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+#batalha {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+#gorila {
+  text-align: center;
+}
+
+#gorila img {
+  width: 150px;
+}
+
+.acoes button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#campoHumanos {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  gap: 5px;
+  justify-content: center;
+  max-width: 350px;
+}
+
+.humano {
+  width: 30px;
+  height: 30px;
+  background-image: url('../assets/humano.png');
+  background-size: cover;
+}
+
+.humano.morto {
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+
+#log {
+  margin-top: 30px;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+}
