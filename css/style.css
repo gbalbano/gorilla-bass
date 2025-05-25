@@ -71,3 +71,75 @@ h1, h2 {
   font-family: monospace;
   border: 2px solid #0f0;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+#gorila img {
+  width: 150px;
+  transition: transform 0.2s;
+}
+
+#gorila img:hover {
+  transform: scale(1.1);
+}
+
+.humano {
+  width: 30px;
+  height: 30px;
+  background-image: url('../assets/humano.png');
+  background-size: cover;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.humano.morto {
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+
+#campoHumanos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+  gap: 5px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+button {
+  background-color: #fff;
+  color: #2E7D32;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #C8E6C9;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#logDeBatalha {
+  background-color: rgba(0,0,0,0.7);
+  padding: 10px;
+  margin-top: 20px;
+  height: 150px;
+  overflow-y: auto;
+  border-radius: 5px;
+  font-family: monospace;
+  text-align: left;
+}
