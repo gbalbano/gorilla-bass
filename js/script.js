@@ -63,3 +63,22 @@ function curar() {
     adicionarMensagemNoLog("Gorila já está com vida cheia!");
   }
 }
+
+function verificarFimDeJogo() {
+  const vivos = listaDeHumanos.filter(h => h).length;
+
+  if (vivos === 0) {
+    adicionarMensagemNoLog("Todos os humanos foram derrotados! 🦍 venceu!");
+    desativarBotoes();
+  }
+
+  if (vidaDoGorila <= 0) {
+    adicionarMensagemNoLog("O gorila foi derrotado! Os humanos venceram!");
+    desativarBotoes();
+  }
+}
+
+function desativarBotoes() {
+  document.querySelectorAll("button").forEach(btn => btn.disabled = true);
+}
+
