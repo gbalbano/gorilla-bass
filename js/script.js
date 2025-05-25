@@ -5,6 +5,14 @@ window.onload = function () {
   renderizarHumanos();
   atualizarStatus();
   setInterval(ataqueDosHumanos, 5000);
+
+  window.onload = function () {
+  carregarEstado();
+  renderizarHumanos();
+  atualizarStatus();
+  setInterval(ataqueDosHumanos, 5000);
+};
+
 };
 
 function renderizarHumanos() {
@@ -45,6 +53,8 @@ function atacar() {
   renderizarHumanos();
   atualizarStatus();
   verificarFimDeJogo();
+
+  salvarEstado()
 }
 
 function curar() {
@@ -56,10 +66,14 @@ function curar() {
     adicionarMensagemNoLog("Gorila já está com vida cheia!");
   }
   atualizarStatus();
+
+  salvarEstado()
 }
 
 function defender() {
   adicionarMensagemNoLog("Gorila se defendeu! (efeito ainda não implementado)");
+
+  salvarEstado()
 }
 
 function ataqueDosHumanos() {
@@ -90,4 +104,22 @@ function verificarFimDeJogo() {
 
 function desativarBotoes() {
   document.querySelectorAll("button").forEach(btn => btn.disabled = true);
+}
+
+function salvarEstado() {
+  localStorage.setItem("vidaDoGorila", vidaDoGorila);
+  localStorage.setItem("humanos", JSON.stringify(humanos));
+}
+
+function carregarEstado() {
+  const vidaSalva = localStorage.getItem("vidaDoGorila");
+  const humanosSalvos = localStorage.getItem("humanos");
+
+  if (vidaSalva !== null) {
+    vidaDoGorila = parseInt(vidaSalva);
+  }
+
+  if (humanosSalvos !== null) {
+    humanos = JSON.parse(humanosSalvos);
+  }
 }
