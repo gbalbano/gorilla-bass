@@ -123,3 +123,18 @@ function carregarEstado() {
     humanos = JSON.parse(humanosSalvos);
   }
 }
+
+function reiniciarJogo() {
+  vidaDoGorila = 100;
+  humanos = Array(100).fill(true);
+  localStorage.clear();
+  adicionarMensagemNoLog("Jogo reiniciado!");
+  renderizarHumanos();
+  atualizarStatus();
+  habilitarBotoes();
+}
+
+function habilitarBotoes() {
+  document.querySelectorAll("button").forEach(btn => btn.disabled = false);
+}
+
