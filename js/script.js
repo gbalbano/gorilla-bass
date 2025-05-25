@@ -1,9 +1,10 @@
-let vidaGorila = 100;
-let humanos = Array(100).fill(true); 
+let vidaDoGorila = 100;
+let humanos = Array(100).fill(true);
 
 window.onload = function () {
   renderizarHumanos();
   atualizarStatus();
+  setInterval(ataqueDosHumanos, 5000);
 };
 
 function renderizarHumanos() {
@@ -19,38 +20,31 @@ function renderizarHumanos() {
 }
 
 function atualizarStatus() {
-  document.getElementById("vidaGorila").innerText = vidaGorila;
+  document.getElementById("vidaGorila").innerText = vidaDoGorila;
   const vivos = humanos.filter(h => h).length;
   document.getElementById("humanosRestantes").innerText = vivos;
 }
 
-function log(msg) {
+function adicionarMensagemNoLog(texto) {
   const mensagens = document.getElementById("mensagens");
-  mensagens.innerHTML += `<p>${msg}</p>`;
+  mensagens.innerHTML += "<p>" + texto + "</p>";
+  mensagens.scrollTop = mensagens.scrollHeight;
 }
 
 function atacar() {
-  let humanosDerrotados = 0;
-
-  for (let i = 0; i < listaDeHumanos.length; i++) {
-    if (listaDeHumanos[i] === true) {
-      listaDeHumanos[i] = false;
-      humanosDerrotados++;
-      if (humanosDerrotados >= 5) {
-        break;
-      }
+  let derrotados = 0;
+  for (let i = 0; i < humanos.length; i++) {
+    if (humanos[i] === true) {
+      humanos[i] = false;
+      derrotados++;
+      if (derrotados >= 5) break;
     }
   }
 
-  adicionarMensagemNoLog("Gorila atacou e derrotou " + humanosDerrotados + " humanos!");
-  mostrarHumanosNaTela();
-  atualizarInformacoes();
+  adicionarMensagemNoLog("Gorila atacou e derrotou " + derrotados + " humanos!");
+  renderizarHumanos();
+  atualizarStatus();
   verificarFimDeJogo();
-}
-
-function defender() {
-  adicionarMensagemNoLog("Gorila se defendeu! Menos dano no próximo ataque.");
- 
 }
 
 function curar() {
@@ -58,14 +52,30 @@ function curar() {
     vidaDoGorila += 10;
     if (vidaDoGorila > 100) vidaDoGorila = 100;
     adicionarMensagemNoLog("Gorila se curou. +10 de vida!");
-    atualizarInformacoes();
   } else {
     adicionarMensagemNoLog("Gorila já está com vida cheia!");
+  }
+  atualizarStatus();
+}
+
+function defender() {
+  adicionarMensagemNoLog("Gorila se defendeu! (efeito ainda não implementado)");
+}
+
+function ataqueDosHumanos() {
+  if (vidaDoGorila > 0) {
+    let dano = Math.floor(Math.random() * 10) + 1;
+    vidaDoGorila -= dano;
+    if (vidaDoGorila < 0) vidaDoGorila = 0;
+
+    adicionarMensagemNoLog("Humanos atacaram! Gorila perdeu " + dano + " de vida.");
+    atualizarStatus();
+    verificarFimDeJogo();
   }
 }
 
 function verificarFimDeJogo() {
-  const vivos = listaDeHumanos.filter(h => h).length;
+  const vivos = humanos.filter(h => h).length;
 
   if (vivos === 0) {
     adicionarMensagemNoLog("Todos os humanos foram derrotados! 🦍 venceu!");
@@ -81,4 +91,3 @@ function verificarFimDeJogo() {
 function desativarBotoes() {
   document.querySelectorAll("button").forEach(btn => btn.disabled = true);
 }
-
